@@ -1,14 +1,22 @@
 RRProject::Application.routes.draw do
-  get "static_pages/home"
-  get "static_pages/help"
-  get "pages/home"
-  get "pages/contact"
+
+  devise_for :users
+  devise_for :admins
+  resources :users
+  root 'pages#home'
+
+  get '/contact', :to => 'pages#contact'
+  get '/about', :to => 'pages#about'
+  get '/help', :to => 'pages#help'
+  get '/signup', :to => 'users#new'
+
+
+  # You can have the root of your site routed with "root"
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
