@@ -1,0 +1,16 @@
+<% provide(:title, @task.description) %>
+<!--classes row and span4 are apart of bootstrap-->
+<div class="row">
+  <div class="col-md-8 center">
+    <section>
+      <h1>
+        Subject: <%= @task.subject %> <br />
+        Description: <%= @task.description %> <!--What happens to this line when I change name to firstname & lastname?-->
+      </h1>
+      <% if current_user.id == @task.user_id %>
+          <%= link_to 'Destroy', {:controller=>:tasks,:action=>:destroy, :id=>@task},:data => { :confirm => "Are you sure?" }, :method=>:delete %>
+      <% end %>
+    </section>
+  </div>
+</div>
+

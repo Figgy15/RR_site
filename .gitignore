@@ -1,0 +1,15 @@
+.bundle
+.idea
+/db/*.sqlite3
+/db/*.sqlite3-journal
+/log/*.log
+*.log
+tmp/**/*
+tmp/*
+/tmp
+doc/api
+doc/app
+*.swp
+*~
+.DS_Store
+Gemfile.sublime-workspace

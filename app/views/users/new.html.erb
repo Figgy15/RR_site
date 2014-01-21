@@ -1,0 +1,53 @@
+<% provide(:title, 'Sign up') %>
+
+<h1>Sign up</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+<!--  The presence of the do keyword indicates that form_for takes a block with one variable, which we’ve called f for “form”: -->
+    <%= form_for(@user) do |f| %>
+      <%= render 'users/shared/error_messages' %>
+<!-- As is usually the case with Rails helpers, we don’t need to know any details about the implementation,
+but what we do need to know is what the f object does: when called with a method corresponding to an HTML form element—such as a text field,
+radio button, or password field—it returns code for that element specifically designed to set an attribute of the @user object.
+In other words, creates the HTML needed to make a labeled text field element appropriate for setting the name attribute of a User model. -->
+      <%= f.label :name, "Name" %>
+      <%= f.text_field :name %>
+
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+
+      <%= f.label :password_confirmation, "Confirm Password" %>
+      <%= f.password_field :password_confirmation %>
+
+      <%= f.submit "Start Running", class: "btn btn-large btn-primary" %>
+
+    <% end %>
+  </div>
+</div>
+
+<!--
+ 	<	%= f.label :name %>
+    <	%= f.text_field :name %>
+    ....produces....
+  <label for="user_name">Name</label>
+  <input id="user_name" name="user[name]" type="text" />
+
+  <label for="user_email">Email</label>
+  <input id="user_email" name="user[email]" type="text" />
+
+  <label for="user_password">Password</label>
+  <input id="user_password" name="user[password]"
+         type="password" />
+
+  <label for="user_password_confirmation">Confirmation</label>
+  <input id="user_password_confirmation"
+         name="user[password_confirmation]" type="password" />
+
+  <input class="btn btn-large btn-primary" name="commit" type="submit"
+         value="Create my account" />
+</form>
+-->
