@@ -1,13 +1,33 @@
 class UsersController < ApplicationController
 
-  def new
-    @title = "Sign Up"
+  def index
+    @users = User.all # getting all the users!
   end
 
-  # Here I've used params to retrieve the user id. When I make the appropriate 
-  # request to the Users controller, params[:id] will be the user id 1, 
-  # so the effect is the same as the find method User.find(1)
+  def new
+    @user = User.new
+  end
+
   def show
     @user = User.find(params[:id])
+    @tasks = @user.tasks
   end
+  def my_rio_runner
+    @user = User.find(params[:id])
+    @tasks = @user.tasks
+  end
+  def create
+    @user = User.new(params[:user]) # Not the final implementation!
+    if @user.save
+      flash[:success] = "User Created Successfully"
+    else
+      render 'new'
+    end
+  end
+
+   private
+
+   def user_params
+   	params.require(:user).permit(:name, :first_name, :last_name, :email, :password, :password_confirmation, :about_me)
+   end
 end

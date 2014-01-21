@@ -1,9 +1,8 @@
-<footer>
-  <nav class="round">
+<div class="navbar-inverse">
+  <div class="container">
     <ul>
-      <li><%= link_to "About", about_path %></li>
-      <li><%= link_to "Contact", contact_path %></li>
-      <li><%= link_to "Test", 'https://www.figgyscode.com' %></li>
+      <li>login</li>
     </ul>
-  </nav>
-</footer>
+    <%= debug (params) if Rails.env.development? %>
+  </div>
+</div>

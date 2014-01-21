@@ -2,13 +2,21 @@ RRProject::Application.routes.draw do
 
   devise_for :users
   devise_for :admins
-  resources :users
   root 'pages#home'
+  resources :users do
+    resources :tasks
+  end
 
   get '/contact', :to => 'pages#contact'
   get '/about', :to => 'pages#about'
   get '/help', :to => 'pages#help'
   get '/signup', :to => 'users#new'
+  get 'riorunner', :to => 'pages#riorunner'
+  get '/users/sign_up', :to => 'devise/registrations#new'
+  get '/posttask', :to => 'pages#posttask'
+  get '/myriorunner/:id', :to => 'users#my_rio_runner', as: 'myriorunner'
+
+
 
 
   # You can have the root of your site routed with "root"

@@ -1,0 +1,81 @@
+<H1>My Rio Runner</H1>
+<div class="row">
+  <%= link_to 'See Public Profile', user_path(@user.id), class: "btn btn-primary" %>
+  <%= gravatar_for @user %> <!--This will pull the usx`ers gravatar using their email address...users_helper.rb-->
+  <h1 class = "text-center">
+    Hello, <%= @user.first_name %> <!--What happens to this line when I change name to firstname & lastname?-->
+  </h1>
+  <br />
+  <h4><%= @user.about_me %></h4>
+  <br />
+
+  <div class = "col-md-6 pull-left">
+    <h3>My Tasks</h3>
+    <%= link_to 'Post a Task', new_user_task_path(current_user.id), class: "btn btn-primary pull-right"%>
+
+    <% if @user.tasks.empty? %>
+        <h4>This user has not posted any tasks...</h4>
+    <% else %>
+
+        <table class = "table table-striped table-bordered">
+          <thead>
+          <tr>
+            <th></th>
+            <th>Subject</th>
+            <th>Description</th>
+            <th>Zip Code</th>
+            <th>Deliverables</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @user.tasks.take(5).each do |task| %>
+              <tr>
+                <td><%= link_to 'view task', user_task_path(current_user.id, task.id) %></td>
+                <td><%= task.subject %></td>
+                <td><%= task.description %></td>
+                <td><%= task.zipcode %></td>
+                <td><%= task.deliverables %></td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+    <% end %>
+    <% if @user.tasks.count > 5 %>
+        <a href ="#" class = "pull-right">View All My Tasks</a>
+    <% end %>
+  </div>
+
+
+  <div class = "col-md-6 pull-right">
+    <h3>All Current Tasks</h3>
+    <table class = "table table-bordered table-hover">
+      <thead>
+      <tr>
+        <th></th>
+        <th>Subject</th>
+        <th>Description</th>
+        <th>Zip Code</th>
+        <th>Deliverables</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% Task.take(5).each do |task| %>
+          <tr>
+            <td><%= link_to 'view task', user_task_path(current_user.id, task.id) %></td> 
+            <td><%= task.subject %></td>
+            <td><%= task.description %></td>
+            <td><%= task.zipcode %></td>
+            <td><%= task.deliverables %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+    <% if Task.count > 5 %>
+        <a href ="#" class = "pull-right">View All Current Tasks</a>
+    <% end %>
+  </div>
+
+</div>
+
+</div>
