@@ -1,6 +1,27 @@
 <h1>View All Current Tasks</h1>
 <div class =  "row" id = "tasks">
   <div class = "col-md-12">
-
+    <table class = "table table-bordered table-hover">
+      <thead>
+      <tr>
+        <th>Status</th>
+        <th>Subject</th>
+        <th>Description</th>
+        <th>Zip Code</th>
+        <th>Deliverables</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% Task.all.each do |task| %>
+          <tr data-link = "<%=user_task_path(current_user.id, task.id)%>" class ="row_hover">
+            <td></td>
+            <td><%= task.subject %></td>
+            <td><%= task.description %></td>
+            <td><%= task.zipcode %></td>
+            <td><%= task.deliverables %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
   </div>
 </div>

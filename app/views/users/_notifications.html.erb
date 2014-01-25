@@ -1,0 +1,10 @@
+<h1>Listing Notifications</h1>
+
+<% @user.notifications.each do |notification| %>
+    <tr>
+      <td><%= notification.todo %></td>
+      <td><%= notification.description %></td>
+      <td><%= notification.status %></td>
+      <td><%= link_to "Remove", notification, method: :delete, data: { confirm: "Are you sure?" } %></td>
+    </tr>
+<% end %>

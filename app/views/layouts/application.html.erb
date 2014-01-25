@@ -39,6 +39,10 @@
           </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
       </div><!-- /.modal -->
-
+      <script>
+          $("tr[data-link]").click(function() {
+              window.location = $(this).data("link")
+          })
+      </script>
   </body>
 </html>
